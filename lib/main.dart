@@ -1,6 +1,8 @@
+import 'package:daaproject/screens/algorithmsScreen.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'menu.dart';
+import 'screens/home.dart';
+import 'screens/menu.dart';
+import 'widgets/Algorithms/bubbleSort.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyMenu(),
+      // home: MyAlgorithmsScreen(),
+      routes: {
+        '/': (context) => MyHome(),
+        '/menu': (context) => MyMenu(),
+        '/algorithmsscreen': (context) => MyAlgorithmsScreen(),
+      },
     );
   }
 }

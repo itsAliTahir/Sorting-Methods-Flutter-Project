@@ -9,7 +9,9 @@ class MyHome extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/menu');
+          },
           child: Container(
             width: 100,
             child: Row(
