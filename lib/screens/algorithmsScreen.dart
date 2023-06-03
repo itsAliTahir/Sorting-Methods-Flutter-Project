@@ -11,18 +11,41 @@ class MyAlgorithmsScreen extends StatefulWidget {
 
 class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
   bool LinearSearchEnable = false;
-  bool menu = true;
-  LinearSearch() {
-    print(213);
-    menu = false;
-    LinearSearchEnable = true;
-    setState(() {});
-  }
+  bool BinarySearchEnable = false;
+  bool BubbleSortEnable = false;
+  bool InsertionSortEnable = false;
+  bool SelectionSortEnable = false;
 
   @override
   Widget build(BuildContext context) {
-    final List<int> myArray =
+    final List<int> myArray1 =
         ModalRoute.of(context)?.settings.arguments as List<int>;
+    enablerFunction(int a) {
+      LinearSearchEnable = false;
+      BinarySearchEnable = false;
+      BubbleSortEnable = false;
+      InsertionSortEnable = false;
+      SelectionSortEnable = false;
+      if (a == 1)
+        Navigator.pushNamed(
+          context,
+          '/linearsearch',
+          arguments: myArray1,
+        );
+      ;
+      if (a == 2)
+        Navigator.pushNamed(
+          context,
+          '/binarysearch',
+          arguments: myArray1,
+        );
+      ;
+      if (a == 3) BubbleSortEnable = true;
+      if (a == 4) InsertionSortEnable = true;
+      if (a == 5) SelectionSortEnable = true;
+      setState(() {});
+    }
+
     return Scaffold(
         appBar: AppBar(),
         body: SingleChildScrollView(
@@ -30,27 +53,11 @@ class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
             child: Container(
               child: Column(
                 children: [
-                  if (menu == true) MyMethods(LinearSearch),
-                  if (LinearSearchEnable == true) LinerarSearch(myArray),
+                  MyMethods(enablerFunction),
                 ],
               ),
             ),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
-        floatingActionButton: menu == false
-            ? FloatingActionButton.extended(
-                onPressed: () {
-                  LinearSearchEnable = false;
-                  menu = true;
-                  setState(() {});
-                },
-                label: Row(
-                  children: [
-                    Icon(Icons.arrow_back),
-                    Text("Back"),
-                  ],
-                ))
-            : null);
+        ));
   }
 }

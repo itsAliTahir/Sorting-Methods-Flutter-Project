@@ -1,16 +1,20 @@
+import 'package:daaproject/widgets/array.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 
-class LinearSearch extends StatefulWidget {
-  LinearSearch();
+class BinarySearch extends StatefulWidget {
+  BinarySearch();
   @override
-  State<LinearSearch> createState() => _LinearSearchState();
+  State<BinarySearch> createState() => _BinarySearchState();
 }
 
-class _LinearSearchState extends State<LinearSearch> {
+class _BinarySearchState extends State<BinarySearch> {
   int searchValue = -1;
   int pointer = -1;
+  int start = -1;
+  int end = myArray.length;
+  double mid = 0;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
   void initState() {
@@ -19,28 +23,48 @@ class _LinearSearchState extends State<LinearSearch> {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> myArray =
+    final List<int> myArray2 =
         ModalRoute.of(context)?.settings.arguments as List<int>;
-    linearSearch(Timer mytimerr) {
-      if (pointer >= 0 &&
-          pointer < myArray.length &&
-          searchValue == myArray[pointer]) {
-        textBelow = "Number Found At Location: ${pointer + 1}";
-        mytimerr.cancel();
-        setState(() {});
-        return;
-      } else if (pointer >= myArray.length) {
+    List<int> myArray1;
+    myArray1 = List.from(myArray2);
+    myArray1.sort();
+    binarySearch(Timer mytimerr) {
+      mid = (end + start) / 2;
+      mid = mid + 0.5;
+      pointer = mid.toInt();
+      print("$start -- $end");
+      if (end - 0.5 == start + 0.5) {
+        start = myArray1.length;
+        end = -1;
+        pointer = -1;
         textBelow = "Couldn't Found Number in This Array";
         mytimerr.cancel();
         setState(() {});
         return;
-      } else if (pointer >= 0 &&
-          pointer < myArray.length &&
-          searchValue != myArray[pointer]) {
-        setState(() {
-          pointer++;
+      }
+      if (end - 0.5 != start + 0.5) {
+        if (searchValue > myArray1[pointer]) {
+          start = pointer;
           textBelow = "Searching...";
-        });
+          setState(() {});
+          return;
+        } else if (searchValue < myArray1[pointer]) {
+          end = pointer;
+          textBelow = "Searching...";
+          setState(() {});
+          return;
+        } else if (searchValue == myArray1[pointer]) {
+          // start = pointer;
+          // end = pointer;
+          textBelow = "Number Found At Location: ${pointer + 1}";
+          mytimerr.cancel();
+          setState(() {});
+          return;
+        } else {
+          textBelow = "Couldn't Found Number in This Array";
+          mytimerr.cancel();
+          return;
+        }
       }
     }
 
@@ -59,7 +83,7 @@ class _LinearSearchState extends State<LinearSearch> {
                 height: 80,
               ),
               Text(
-                "Linear Search",
+                "Binary Search",
                 style: TextStyle(
                     color: Color.fromARGB(255, 124, 123, 123), fontSize: 24),
               ),
@@ -69,7 +93,7 @@ class _LinearSearchState extends State<LinearSearch> {
               Container(
                 child: Wrap(
                   children: [
-                    for (int index = 0; index < myArray.length; index++)
+                    for (int index = 0; index < myArray1.length; index++)
                       AnimatedContainer(
                         duration: Duration(
                           seconds: 1,
@@ -90,11 +114,11 @@ class _LinearSearchState extends State<LinearSearch> {
                         ),
                         margin: EdgeInsets.all(2),
                         child: Center(
-                            child: Text("${myArray[index]}",
+                            child: Text("${myArray1[index]}",
                                 style: pointer == index
                                     ? TextStyle(
                                         fontSize: 20, color: Colors.blue)
-                                    : pointer > index
+                                    : index <= start || index >= end
                                         ? TextStyle(
                                             fontSize: 15,
                                             color: Colors.red,
@@ -148,11 +172,12 @@ class _LinearSearchState extends State<LinearSearch> {
                             onPressed: () {
                               if (searchValue == -1) return;
                               pointer = -1;
-                              pointer++;
+                              start = -1;
+                              end = myArray1.length;
                               setState(() {});
-                              mytimer = Timer.periodic(
-                                  Duration(milliseconds: 500), (timer) {
-                                linearSearch(mytimer);
+                              mytimer =
+                                  Timer.periodic(Duration(seconds: 1), (timer) {
+                                binarySearch(mytimer);
                               });
                             },
                             child: Text('Search')),

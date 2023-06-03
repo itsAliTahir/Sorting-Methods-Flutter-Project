@@ -4,9 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
 
 class MyMethods extends StatefulWidget {
-  Function LinearSearch;
+  Function MethodsFun;
 
-  MyMethods(this.LinearSearch);
+  MyMethods(this.MethodsFun);
 
   @override
   State<MyMethods> createState() => _MyMethodsState();
@@ -30,7 +30,7 @@ class _MyMethodsState extends State<MyMethods> {
               padding: const EdgeInsets.all(5),
               child: ElevatedButton(
                   onPressed: () {
-                    widget.LinearSearch();
+                    widget.MethodsFun(1);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +43,9 @@ class _MyMethodsState extends State<MyMethods> {
               width: 170,
               padding: const EdgeInsets.all(5),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.MethodsFun(2);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

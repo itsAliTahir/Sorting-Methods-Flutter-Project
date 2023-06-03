@@ -31,7 +31,8 @@ class _MyArrayBoxState extends State<MyArrayBox> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 width: MediaQuery.of(context).size.width,
-                height: 250,
+                height: 300,
+                // color: Colors.amber,
                 child: Wrap(
                   alignment: WrapAlignment.center,
                   children: [

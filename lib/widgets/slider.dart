@@ -21,9 +21,9 @@ class _MySliderState extends State<MySlider> {
               Text("Select Array Size"),
               SfSlider(
                   showLabels: true,
-                  interval: 2,
+                  interval: 3,
                   min: 4,
-                  max: 20,
+                  max: 30,
                   stepSize: 1,
                   showTicks: true,
                   value: widget.sliderValue,

@@ -22,13 +22,13 @@ class _MyMenuState extends State<MyMenu> {
 
   void randomValues(int a) {
     int minValue = 4;
-    int maxValue = 20;
+    int maxValue = 30;
     if (a == 0) {
       Random random = Random();
       sliderValue =
           (minValue + random.nextInt(maxValue - minValue + 1)).toDouble();
     }
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 30; i++) {
       if (a == 0) {
         minValue = 1;
         maxValue = 99;
