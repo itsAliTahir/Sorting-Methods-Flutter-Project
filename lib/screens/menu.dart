@@ -22,13 +22,13 @@ class _MyMenuState extends State<MyMenu> {
 
   void randomValues(int a) {
     int minValue = 4;
-    int maxValue = 30;
+    int maxValue = 20;
     if (a == 0) {
       Random random = Random();
       sliderValue =
           (minValue + random.nextInt(maxValue - minValue + 1)).toDouble();
     }
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 20; i++) {
       if (a == 0) {
         minValue = 1;
         maxValue = 99;
@@ -50,6 +50,7 @@ class _MyMenuState extends State<MyMenu> {
   void tempArrayFun(int a) {
     if (a == 1) {
       tempArray = [];
+      mainSlider = sliderValue.toInt();
       for (int i = 0; i < sliderValue; i++) {
         tempArray.add(myArray[i].value);
         print(tempArray[i]);
@@ -78,7 +79,6 @@ class _MyMenuState extends State<MyMenu> {
               SizedBox(
                 height: 10,
               ),
-              // Divider(),
             ],
           ),
         ),

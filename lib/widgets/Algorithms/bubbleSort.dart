@@ -1,46 +1,87 @@
+// import 'package:daaproject/widgets/array.dart';
+import 'package:daaproject/widgets/array.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+// import '../../widgets/array.dart';
 
-class LinearSearch extends StatefulWidget {
-  LinearSearch();
-  @override
-  State<LinearSearch> createState() => _LinearSearchState();
+class Ray {
+  int value;
+  Ray(this.value);
 }
 
-class _LinearSearchState extends State<LinearSearch> {
-  int searchValue = -1;
-  int pointer = -1;
+List<Ray> myArray1 = [];
+
+class BubbleSort extends StatefulWidget {
+  BubbleSort();
+  @override
+  State<BubbleSort> createState() => _BubbleSortState();
+}
+
+class _BubbleSortState extends State<BubbleSort> {
+  int pointer1 = -1;
+  int pointer2 = -1;
+  int temp = 0;
+  bool sorted = true;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
+  Timer mytimer3 = Timer.periodic(Duration.zero, (timer) {});
+
   void initState() {
     mytimer.cancel();
+    mytimer3.cancel();
+    myArray1 = [];
+    for (int i = 0; i < mainSlider; i++) {
+      Ray newRay = Ray(myArray[i].value);
+      myArray1.add(newRay);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<int> myArray =
+    final List<int> myArray2 =
         ModalRoute.of(context)?.settings.arguments as List<int>;
-    linearSearch(Timer mytimerr) {
-      if (pointer >= 0 &&
-          pointer < myArray.length &&
-          searchValue == myArray[pointer]) {
-        textBelow = "Number Found At Location: ${pointer + 1}";
-        mytimerr.cancel();
+    List<int> myArray3;
+    myArray3 = List.from(myArray2);
+    myArray3.sort();
+
+    bubbleSortFun(Timer mytimer1) {
+      if (myArray1.length > pointer2) {
+        if (myArray1[pointer1].value > myArray1[pointer2].value) {
+          print("swaped");
+          sorted = true;
+          textBelow = "Values Swaped";
+          setState(() {
+            temp = myArray1[pointer1].value;
+            myArray1[pointer1].value = myArray1[pointer2].value;
+            myArray1[pointer2].value = temp;
+          });
+        } else {
+          print("continue");
+          textBelow = "Progressing...";
+          sorted = true;
+          pointer1++;
+          pointer2++;
+          setState(() {});
+        }
+      } else {
+        print("reached end");
+
+        for (int i = 0; i < mainSlider; i++) {
+          if (myArray1[i].value != myArray3[i]) sorted = false;
+          print('${myArray1[i].value} -- ${myArray3[i]}');
+        }
+        if (sorted == true) {
+          pointer1 = -1;
+          pointer2 = -1;
+          textBelow = "Array Sorted";
+          mytimer.cancel();
+        } else {
+          pointer1 = 0;
+          pointer2 = 1;
+        }
+
         setState(() {});
-        return;
-      } else if (pointer >= myArray.length) {
-        textBelow = "Couldn't Found Number in This Array";
-        mytimerr.cancel();
-        setState(() {});
-        return;
-      } else if (pointer >= 0 &&
-          pointer < myArray.length &&
-          searchValue != myArray[pointer]) {
-        setState(() {
-          pointer++;
-          textBelow = "Searching...";
-        });
       }
     }
 
@@ -59,7 +100,7 @@ class _LinearSearchState extends State<LinearSearch> {
                 height: 80,
               ),
               Text(
-                "Linear Search",
+                "Bubble Sort",
                 style: TextStyle(
                     color: Color.fromARGB(255, 124, 123, 123), fontSize: 24),
               ),
@@ -69,7 +110,7 @@ class _LinearSearchState extends State<LinearSearch> {
               Container(
                 child: Wrap(
                   children: [
-                    for (int index = 0; index < myArray.length; index++)
+                    for (int index = 0; index < myArray1.length; index++)
                       AnimatedContainer(
                         duration: Duration(
                           seconds: 1,
@@ -78,11 +119,11 @@ class _LinearSearchState extends State<LinearSearch> {
                         width: 50,
                         height: 50,
                         decoration: BoxDecoration(
-                          borderRadius: pointer == index
+                          borderRadius: pointer1 == index || pointer2 == index
                               ? BorderRadius.circular(45)
                               : BorderRadius.circular(5),
                           border: Border.all(
-                            color: pointer == index
+                            color: pointer1 == index || pointer2 == index
                                 ? Colors.black
                                 : Colors.transparent,
                             width: 1,
@@ -90,20 +131,13 @@ class _LinearSearchState extends State<LinearSearch> {
                         ),
                         margin: EdgeInsets.all(2),
                         child: Center(
-                            child: Text("${myArray[index]}",
-                                style: pointer == index
+                            child: Text("${myArray1[index].value}",
+                                style: pointer1 == index || pointer2 == index
                                     ? TextStyle(
                                         fontSize: 20, color: Colors.blue)
-                                    : pointer > index
-                                        ? TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.red,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                          )
-                                        : TextStyle(
-                                            fontSize: 15,
-                                          ))),
+                                    : TextStyle(
+                                        fontSize: 15,
+                                      ))),
                       ),
                   ],
                 ),
@@ -111,54 +145,18 @@ class _LinearSearchState extends State<LinearSearch> {
               SizedBox(
                 height: 30,
               ),
-              Container(
-                width: 250,
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 100,
-                      child: TextFormField(
-                        enabled: !mytimer.isActive,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        style: TextStyle(fontSize: 15.0),
-                        onChanged: (value) {
-                          if (value.isEmpty) {
-                            searchValue = -1;
-                            return;
-                          } else if (int.parse(value) > 100 ||
-                              int.parse(value) < 0) {
-                            return;
-                          }
-                          searchValue = int.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 12.0),
-                          hintText: 'Enter Value',
-                        ),
-                      ),
-                    ),
-                    mytimer.isActive
-                        ? ElevatedButton(onPressed: null, child: Text('Search'))
-                        : ElevatedButton(
-                            onPressed: () {
-                              if (searchValue == -1) return;
-                              pointer = -1;
-                              pointer++;
-                              setState(() {});
-                              mytimer = Timer.periodic(
-                                  Duration(milliseconds: 500), (timer) {
-                                linearSearch(mytimer);
-                              });
-                            },
-                            child: Text('Search')),
-                  ],
-                ),
-              ),
+              mytimer.isActive || textBelow == "Array Sorted"
+                  ? ElevatedButton(onPressed: null, child: Text('Sort'))
+                  : ElevatedButton(
+                      onPressed: () {
+                        pointer1 = 0;
+                        pointer2 = 1;
+                        setState(() {});
+                        mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+                          bubbleSortFun(mytimer);
+                        });
+                      },
+                      child: Text('Sort')),
               Container(
                   margin: EdgeInsets.only(top: 50),
                   width: double.infinity,

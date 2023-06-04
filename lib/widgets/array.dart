@@ -1,3 +1,5 @@
+int mainSlider = 0;
+
 class Array {
   int value;
   Array(this.value);
