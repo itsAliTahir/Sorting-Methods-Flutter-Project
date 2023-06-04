@@ -123,9 +123,12 @@ class _BubbleSortState extends State<BubbleSort> {
                               ? BorderRadius.circular(45)
                               : BorderRadius.circular(5),
                           border: Border.all(
-                            color: pointer1 == index || pointer2 == index
-                                ? Colors.black
-                                : Colors.transparent,
+                            color: (pointer1 == index || pointer2 == index) &&
+                                    textBelow == "Values Swaped"
+                                ? Colors.red
+                                : (pointer1 == index || pointer2 == index)
+                                    ? Colors.black
+                                    : Colors.transparent,
                             width: 1,
                           ),
                         ),
