@@ -22,6 +22,7 @@ class _BubbleSortState extends State<BubbleSort> {
   int pointer1 = -1;
   int pointer2 = -1;
   int temp = 0;
+  int end = 0;
   bool sorted = true;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
@@ -35,6 +36,7 @@ class _BubbleSortState extends State<BubbleSort> {
       Ray newRay = Ray(myArray[i].value);
       myArray1.add(newRay);
     }
+    end = myArray1.length;
   }
 
   @override
@@ -46,7 +48,7 @@ class _BubbleSortState extends State<BubbleSort> {
     myArray3.sort();
 
     bubbleSortFun(Timer mytimer1) {
-      if (myArray1.length > pointer2) {
+      if (end > pointer2) {
         if (myArray1[pointer1].value > myArray1[pointer2].value) {
           print("swaped");
           sorted = true;
@@ -75,8 +77,10 @@ class _BubbleSortState extends State<BubbleSort> {
           pointer1 = -1;
           pointer2 = -1;
           textBelow = "Array Sorted";
+          end = -1;
           mytimer.cancel();
         } else {
+          end--;
           pointer1 = 0;
           pointer2 = 1;
         }
@@ -135,12 +139,19 @@ class _BubbleSortState extends State<BubbleSort> {
                         margin: EdgeInsets.all(2),
                         child: Center(
                             child: Text("${myArray1[index].value}",
-                                style: pointer1 == index || pointer2 == index
-                                    ? TextStyle(
-                                        fontSize: 20, color: Colors.blue)
-                                    : TextStyle(
-                                        fontSize: 15,
-                                      ))),
+                                style:
+                                    (pointer1 == index || pointer2 == index) &&
+                                            end > index
+                                        ? TextStyle(
+                                            fontSize: 20, color: Colors.blue)
+                                        : end <= index
+                                            ? TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.green,
+                                                fontWeight: FontWeight.bold)
+                                            : TextStyle(
+                                                fontSize: 15,
+                                              ))),
                       ),
                   ],
                 ),
