@@ -1,4 +1,4 @@
-import 'package:daaproject/widgets/Algorithms/linearSearch.dart';
+import 'package:daaproject/screens/Algorithms/linearSearch.dart';
 import 'package:flutter/material.dart';
 import '../widgets/selectMethod.dart';
 
@@ -33,7 +33,12 @@ class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
           '/bubblesort',
           arguments: myArray1,
         );
-      // if (a == 4) InsertionSortEnable = true;
+      if (a == 4)
+        Navigator.pushNamed(
+          context,
+          '/selectionsort',
+          arguments: myArray1,
+        );
       // if (a == 5) SelectionSortEnable = true;
       setState(() {});
     }

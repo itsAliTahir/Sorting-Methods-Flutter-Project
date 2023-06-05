@@ -1,9 +1,7 @@
-// import 'package:daaproject/widgets/array.dart';
 import 'package:daaproject/widgets/array.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-// import '../../widgets/array.dart';
 
 class Ray {
   int value;
@@ -12,17 +10,17 @@ class Ray {
 
 List<Ray> myArray1 = [];
 
-class BubbleSort extends StatefulWidget {
-  BubbleSort();
+class SelectionSort extends StatefulWidget {
+  SelectionSort();
   @override
-  State<BubbleSort> createState() => _BubbleSortState();
+  State<SelectionSort> createState() => _SelectionSortState();
 }
 
-class _BubbleSortState extends State<BubbleSort> {
+class _SelectionSortState extends State<SelectionSort> {
   int pointer1 = -1;
   int pointer2 = -1;
   int temp = 0;
-  int end = 0;
+  int min = -1;
   bool sorted = true;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
@@ -36,7 +34,7 @@ class _BubbleSortState extends State<BubbleSort> {
       Ray newRay = Ray(myArray[i].value);
       myArray1.add(newRay);
     }
-    end = myArray1.length;
+    min = -1;
   }
 
   @override
@@ -48,41 +46,41 @@ class _BubbleSortState extends State<BubbleSort> {
     myArray3.sort();
 
     bubbleSortFun(Timer mytimer1) {
-      if (end > pointer2) {
-        if (myArray1[pointer1].value > myArray1[pointer2].value) {
+      if (myArray1.length > pointer2) {
+        print('${min} - ${pointer2} - ${pointer1}');
+        if (myArray1[min].value > myArray1[pointer2].value) {
           print("swaped");
           sorted = true;
-          textBelow = "Values Swaped";
-          setState(() {
-            temp = myArray1[pointer1].value;
-            myArray1[pointer1].value = myArray1[pointer2].value;
-            myArray1[pointer2].value = temp;
-          });
+          min = pointer2;
+          pointer2++;
+          setState(() {});
         } else {
           print("continue");
           textBelow = "Progressing...";
           sorted = true;
-          pointer1++;
           pointer2++;
           setState(() {});
         }
       } else {
         print("reached end");
-
+        temp = myArray1[pointer1].value;
+        myArray1[pointer1].value = myArray1[min].value;
+        myArray1[min].value = temp;
+        textBelow = "Swaped With Minimum Value";
         for (int i = 0; i < mainSlider; i++) {
           if (myArray1[i].value != myArray3[i]) sorted = false;
           print('${myArray1[i].value} -- ${myArray3[i]}');
         }
         if (sorted == true) {
-          pointer1 = -1;
+          pointer1 = myArray1.length;
           pointer2 = -1;
           textBelow = "Array Sorted";
-          end = -1;
+          min = -1;
           mytimer.cancel();
         } else {
-          end--;
-          pointer1 = 0;
-          pointer2 = 1;
+          pointer1++;
+          min = pointer1;
+          pointer2 = pointer1;
         }
 
         setState(() {});
@@ -104,7 +102,7 @@ class _BubbleSortState extends State<BubbleSort> {
                 height: 80,
               ),
               Text(
-                "Bubble Sort",
+                "Selection Sort",
                 style: TextStyle(
                     color: Color.fromARGB(255, 124, 123, 123), fontSize: 24),
               ),
@@ -127,8 +125,8 @@ class _BubbleSortState extends State<BubbleSort> {
                               ? BorderRadius.circular(45)
                               : BorderRadius.circular(5),
                           border: Border.all(
-                            color: (pointer1 == index || pointer2 == index) &&
-                                    textBelow == "Values Swaped"
+                            color: (pointer1 == index) &&
+                                    textBelow == "Swaped With Minimum Value"
                                 ? Colors.red
                                 : (pointer1 == index || pointer2 == index)
                                     ? Colors.black
@@ -139,15 +137,18 @@ class _BubbleSortState extends State<BubbleSort> {
                         margin: EdgeInsets.all(2),
                         child: Center(
                             child: Text("${myArray1[index].value}",
-                                style:
-                                    (pointer1 == index || pointer2 == index) &&
-                                            end > index
+                                style: (pointer1 == index || pointer2 == index)
+                                    ? TextStyle(
+                                        fontSize: 20, color: Colors.blue)
+                                    : pointer1 > index
                                         ? TextStyle(
-                                            fontSize: 20, color: Colors.blue)
-                                        : end <= index
+                                            fontSize: 15,
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold)
+                                        : min == index
                                             ? TextStyle(
                                                 fontSize: 15,
-                                                color: Colors.green,
+                                                color: Colors.orangeAccent,
                                                 fontWeight: FontWeight.bold)
                                             : TextStyle(
                                                 fontSize: 15,
@@ -165,6 +166,7 @@ class _BubbleSortState extends State<BubbleSort> {
                       onPressed: () {
                         pointer1 = 0;
                         pointer2 = 1;
+                        min = 0;
                         setState(() {});
                         mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
                           bubbleSortFun(mytimer);

@@ -1,7 +1,8 @@
 import 'package:daaproject/screens/algorithmsScreen.dart';
-import 'package:daaproject/widgets/Algorithms/binarySearch.dart';
-import 'package:daaproject/widgets/Algorithms/linearSearch.dart';
-import 'package:daaproject/widgets/Algorithms/bubbleSort.dart';
+import 'package:daaproject/screens/Algorithms/binarySearch.dart';
+import 'package:daaproject/screens/Algorithms/linearSearch.dart';
+import 'package:daaproject/screens/Algorithms/bubbleSort.dart';
+import 'package:daaproject/screens/Algorithms/selectionSort.dart';
 import 'package:flutter/material.dart';
 import 'screens/home.dart';
 import 'screens/menu.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/linearsearch': (context) => LinearSearch(),
         '/binarysearch': (context) => BinarySearch(),
         '/bubblesort': (context) => BubbleSort(),
+        '/selectionsort': (context) => SelectionSort(),
       },
     );
   }
