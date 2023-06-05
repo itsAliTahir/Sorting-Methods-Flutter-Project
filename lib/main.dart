@@ -3,11 +3,15 @@ import 'package:daaproject/screens/Algorithms/binarySearch.dart';
 import 'package:daaproject/screens/Algorithms/linearSearch.dart';
 import 'package:daaproject/screens/Algorithms/bubbleSort.dart';
 import 'package:daaproject/screens/Algorithms/selectionSort.dart';
+import 'package:daaproject/screens/Algorithms/insertionSort.dart';
 import 'package:flutter/material.dart';
 import 'screens/home.dart';
 import 'screens/menu.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/binarysearch': (context) => BinarySearch(),
         '/bubblesort': (context) => BubbleSort(),
         '/selectionsort': (context) => SelectionSort(),
+        '/insertionsort': (context) => InsertionSort(),
       },
     );
   }

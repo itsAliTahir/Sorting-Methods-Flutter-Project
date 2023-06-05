@@ -39,7 +39,12 @@ class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
           '/selectionsort',
           arguments: myArray1,
         );
-      // if (a == 5) SelectionSortEnable = true;
+      if (a == 5)
+        Navigator.pushNamed(
+          context,
+          '/insertionsort',
+          arguments: myArray1,
+        );
       setState(() {});
     }
 

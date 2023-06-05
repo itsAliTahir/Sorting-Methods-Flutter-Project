@@ -85,7 +85,9 @@ class _MyMethodsState extends State<MyMethods> {
               width: 170,
               padding: const EdgeInsets.all(5),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.MethodsFun(5);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
