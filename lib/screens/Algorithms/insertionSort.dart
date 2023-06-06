@@ -20,16 +20,14 @@ class _InsertionSortState extends State<InsertionSort> {
   int pointer1 = -1;
   int pointer2 = -1;
   int temp = 0;
-  int till = 0;
+  int till = -1;
   bool sorted = true;
   bool back = false;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
-  Timer mytimer3 = Timer.periodic(Duration.zero, (timer) {});
 
   void initState() {
     mytimer.cancel();
-    mytimer3.cancel();
     myArray1 = [];
     for (int i = 0; i < mainSlider; i++) {
       Ray newRay = Ray(myArray[i].value);
@@ -90,6 +88,7 @@ class _InsertionSortState extends State<InsertionSort> {
         } else {
           pointer1++;
           pointer2++;
+          till = pointer1; // 12121
           sorted = true;
           textBelow = "Progressing...";
           print('flag 4');
@@ -173,9 +172,14 @@ class _InsertionSortState extends State<InsertionSort> {
                                             fontSize: 15,
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold)
-                                        : TextStyle(
-                                            fontSize: 15,
-                                          ))),
+                                        : till >= index
+                                            ? TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.orangeAccent,
+                                                fontWeight: FontWeight.bold)
+                                            : TextStyle(
+                                                fontSize: 15,
+                                              ))),
                       ),
                   ],
                 ),
@@ -192,7 +196,8 @@ class _InsertionSortState extends State<InsertionSort> {
                         till = 0;
                         back = false;
                         setState(() {});
-                        mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+                        mytimer = Timer.periodic(Duration(milliseconds: 750),
+                            (timer) {
                           bubbleSortFun(mytimer);
                         });
                       },
