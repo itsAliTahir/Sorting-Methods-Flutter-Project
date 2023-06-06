@@ -1,7 +1,6 @@
 import 'package:daaproject/widgets/array.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/services.dart';
 
 class Ray {
   int value;
@@ -24,11 +23,8 @@ class _BubbleSortState extends State<BubbleSort> {
   bool sorted = true;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
-  Timer mytimer3 = Timer.periodic(Duration.zero, (timer) {});
-
   void initState() {
     mytimer.cancel();
-    mytimer3.cancel();
     myArray1 = [];
     for (int i = 0; i < mainSlider; i++) {
       Ray newRay = Ray(myArray[i].value);
@@ -39,6 +35,7 @@ class _BubbleSortState extends State<BubbleSort> {
 
   @override
   Widget build(BuildContext context) {
+    // print('Slider: ${-1 * sliderValue.toInt()}');
     final List<int> myArray2 =
         ModalRoute.of(context)?.settings.arguments as List<int>;
     List<int> myArray3;
@@ -48,7 +45,7 @@ class _BubbleSortState extends State<BubbleSort> {
     bubbleSortFun(Timer mytimer1) {
       if (end > pointer2) {
         if (myArray1[pointer1].value > myArray1[pointer2].value) {
-          print("swaped");
+          // print("swaped");
           sorted = true;
           textBelow = "Values Swaped";
           setState(() {
@@ -57,7 +54,7 @@ class _BubbleSortState extends State<BubbleSort> {
             myArray1[pointer2].value = temp;
           });
         } else {
-          print("continue");
+          // print("continue");
           textBelow = "Progressing...";
           sorted = true;
           pointer1++;
@@ -65,11 +62,11 @@ class _BubbleSortState extends State<BubbleSort> {
           setState(() {});
         }
       } else {
-        print("reached end");
+        // print("reached end");
 
         for (int i = 0; i < mainSlider; i++) {
           if (myArray1[i].value != myArray3[i]) sorted = false;
-          print('${myArray1[i].value} -- ${myArray3[i]}');
+          // print('${myArray1[i].value} -- ${myArray3[i]}');
         }
         if (sorted == true) {
           pointer1 = -1;
@@ -155,7 +152,7 @@ class _BubbleSortState extends State<BubbleSort> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               mytimer.isActive || textBelow == "Array Sorted"
                   ? ElevatedButton(onPressed: null, child: Text('Sort'))
@@ -164,7 +161,8 @@ class _BubbleSortState extends State<BubbleSort> {
                         pointer1 = 0;
                         pointer2 = 1;
                         setState(() {});
-                        mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+                        mytimer = Timer.periodic(Duration(milliseconds: 750),
+                            (timer) {
                           bubbleSortFun(mytimer);
                         });
                       },

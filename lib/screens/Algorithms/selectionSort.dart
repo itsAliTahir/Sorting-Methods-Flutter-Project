@@ -24,11 +24,9 @@ class _SelectionSortState extends State<SelectionSort> {
   bool sorted = true;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
-  Timer mytimer3 = Timer.periodic(Duration.zero, (timer) {});
 
   void initState() {
     mytimer.cancel();
-    mytimer3.cancel();
     myArray1 = [];
     for (int i = 0; i < mainSlider; i++) {
       Ray newRay = Ray(myArray[i].value);
@@ -168,7 +166,8 @@ class _SelectionSortState extends State<SelectionSort> {
                         pointer2 = 1;
                         min = 0;
                         setState(() {});
-                        mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+                        mytimer = Timer.periodic(Duration(milliseconds: 750),
+                            (timer) {
                           bubbleSortFun(mytimer);
                         });
                       },

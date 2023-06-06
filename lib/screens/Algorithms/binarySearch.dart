@@ -56,7 +56,7 @@ class _BinarySearchState extends State<BinarySearch> {
         } else if (searchValue == myArray1[pointer]) {
           // start = pointer;
           // end = pointer;
-          textBelow = "Number Found At Location: ${pointer + 1}";
+          textBelow = "Number Found At Index: $pointer";
           mytimerr.cancel();
           setState(() {});
           return;

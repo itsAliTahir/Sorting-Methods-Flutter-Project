@@ -25,7 +25,7 @@ class _LinearSearchState extends State<LinearSearch> {
       if (pointer >= 0 &&
           pointer < myArray.length &&
           searchValue == myArray[pointer]) {
-        textBelow = "Number Found At Location: ${pointer + 1}";
+        textBelow = "Number Found At Index: $pointer";
         mytimerr.cancel();
         setState(() {});
         return;
@@ -151,7 +151,7 @@ class _LinearSearchState extends State<LinearSearch> {
                               pointer++;
                               setState(() {});
                               mytimer = Timer.periodic(
-                                  Duration(milliseconds: 500), (timer) {
+                                  Duration(milliseconds: 750), (timer) {
                                 linearSearch(mytimer);
                               });
                             },
