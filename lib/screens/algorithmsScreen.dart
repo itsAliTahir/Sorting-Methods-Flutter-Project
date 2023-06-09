@@ -49,10 +49,21 @@ class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
     }
 
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            "Algorithms",
+            style: TextStyle(color: Color.fromARGB(255, 47, 47, 47)),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: Container(
+              decoration: BoxDecoration(),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height - 200,
               child: Column(
                 children: [
                   MyMethods(enablerFunction),

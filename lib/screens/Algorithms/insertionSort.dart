@@ -43,7 +43,7 @@ class _InsertionSortState extends State<InsertionSort> {
     myArray3 = List.from(myArray2);
     myArray3.sort();
 
-    bubbleSortFun(Timer mytimer1) {
+    insertionSortFun(Timer mytimer1) {
       if (pointer1 == 0) {
         back = false;
         if (myArray1[pointer1].value > myArray1[pointer2].value) {
@@ -88,7 +88,7 @@ class _InsertionSortState extends State<InsertionSort> {
         } else {
           pointer1++;
           pointer2++;
-          till = pointer1; // 12121
+          till = pointer1;
           sorted = true;
           textBelow = "Progressing...";
           print('flag 4');
@@ -198,7 +198,7 @@ class _InsertionSortState extends State<InsertionSort> {
                         setState(() {});
                         mytimer = Timer.periodic(Duration(milliseconds: 750),
                             (timer) {
-                          bubbleSortFun(mytimer);
+                          insertionSortFun(mytimer);
                         });
                       },
                       child: Text('Sort')),

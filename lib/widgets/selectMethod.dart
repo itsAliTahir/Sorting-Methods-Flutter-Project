@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/widgets.dart';
 
 class MyMethods extends StatefulWidget {
   Function MethodsFun;
@@ -21,80 +18,266 @@ class _MyMethodsState extends State<MyMethods> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 10, right: 10, bottom: 10),
-              child: const Text("Select Method")),
-          Container(
-              width: 170,
-              padding: const EdgeInsets.all(5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.MethodsFun(1);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SizedBox(
+            height: 30,
+          ),
+          InkWell(
+            onTap: () {
+              widget.MethodsFun(1);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 45),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 105, 183, 249)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.search),
-                      const Text("Linear Search"),
+                      Icon(Icons.linear_scale_outlined),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Linear Search",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text(
+                            "Step-by-step element matching.",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))),
-          Container(
-              width: 170,
-              padding: const EdgeInsets.all(5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.MethodsFun(2);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45),
+                        border: Border.all(color: Colors.black)),
+                    child: Icon(
+                      Icons.navigate_next_sharp,
+                      size: 30,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              widget.MethodsFun(2);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 45),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 0, 200, 173)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.search),
-                      const Text("Binary Search"),
+                      Icon(Icons.safety_divider),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Binary Search",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text(
+                            "Dividing the list to find the target.",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))),
-          Container(
-              width: 170,
-              padding: const EdgeInsets.all(5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.MethodsFun(3);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45),
+                        border: Border.all(color: Colors.black)),
+                    child: Icon(
+                      Icons.navigate_next_sharp,
+                      size: 30,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              widget.MethodsFun(3);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 45),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 147, 170, 214)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.sort_rounded),
-                      const Text("Bubble Sort"),
+                      Icon(Icons.bubble_chart),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Bubble Sort",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text(
+                            "Swapping adjacent elements",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))),
-          Container(
-              width: 170,
-              padding: const EdgeInsets.all(5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.MethodsFun(4);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45),
+                        border: Border.all(color: Colors.black)),
+                    child: Icon(
+                      Icons.navigate_next_sharp,
+                      size: 30,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              widget.MethodsFun(4);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 45),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 105, 183, 249)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.sort_rounded),
-                      const Text("Selection Sort"),
+                      Icon(Icons.highlight_outlined),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Selection Sort",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text(
+                            "Selecting and swapping elements.",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))),
-          Container(
-              width: 170,
-              padding: const EdgeInsets.all(5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.MethodsFun(5);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45),
+                        border: Border.all(color: Colors.black)),
+                    child: Icon(
+                      Icons.navigate_next_sharp,
+                      size: 30,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              widget.MethodsFun(5);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 45),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color.fromARGB(255, 0, 200, 173)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.sort_rounded),
-                      const Text("Insertion Sort"),
+                      Icon(Icons.bar_chart),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Insertion Sort",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                          Text(
+                            "Inserting elements for sorting.",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45),
+                        border: Border.all(color: Colors.black)),
+                    child: Icon(
+                      Icons.navigate_next_sharp,
+                      size: 30,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

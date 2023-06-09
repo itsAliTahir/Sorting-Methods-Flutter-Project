@@ -6,17 +6,31 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/menu');
-          },
-          child: Container(
-            width: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text("Click Here"), Icon(Icons.navigate_next_sharp)],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 185, 223, 255),
+              Color.fromARGB(255, 255, 212, 239),
+            ],
+            stops: [0.0, 1.0],
+          ),
+        ),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/menu');
+            },
+            child: Container(
+              width: 100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text("Click Here"), Icon(Icons.navigate_next_sharp)],
+              ),
             ),
           ),
         ),
