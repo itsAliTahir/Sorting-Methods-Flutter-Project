@@ -115,15 +115,16 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                   spacing: 10,
                   runSpacing: 5,
                   children: [
-                    Container(
+                    Ink(
                       width: 80,
-                      height: 30,
+                      height: 45,
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                       decoration: BoxDecoration(
                           color: Colors.blueGrey,
                           borderRadius: BorderRadius.circular(5)),
                       child: InkWell(
+                        splashColor: Color.fromARGB(255, 121, 121, 121),
                         onTap: () {
                           widget.randomValues(1);
                         },
@@ -135,15 +136,17 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                         ),
                       ),
                     ),
-                    Container(
+                    Ink(
                       width: 130,
-                      height: 30,
+                      height: 45,
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                       decoration: BoxDecoration(
                           color: Color.fromARGB(255, 105, 183, 249),
                           borderRadius: BorderRadius.circular(5)),
                       child: InkWell(
+                        splashColor: Colors.blue,
+                        splashFactory: InkRipple.splashFactory,
                         onTap: () {
                           widget.randomValues(0);
                         },
@@ -155,15 +158,16 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                         ),
                       ),
                     ),
-                    Container(
+                    Ink(
                       width: 130,
-                      height: 30,
+                      height: 45,
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                       decoration: BoxDecoration(
                           color: Color.fromARGB(255, 105, 183, 249),
                           borderRadius: BorderRadius.circular(5)),
                       child: InkWell(
+                        splashColor: Colors.blue,
                         onTap: () {
                           widget.tempArrayFun(1);
                         },

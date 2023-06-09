@@ -143,19 +143,35 @@ class _LinearSearchState extends State<LinearSearch> {
                       ),
                     ),
                     mytimer.isActive
-                        ? ElevatedButton(onPressed: null, child: Text('Search'))
-                        : ElevatedButton(
-                            onPressed: () {
-                              if (searchValue == -1) return;
-                              pointer = -1;
-                              pointer++;
-                              setState(() {});
-                              mytimer = Timer.periodic(
-                                  Duration(milliseconds: 750), (timer) {
-                                linearSearch(mytimer);
-                              });
-                            },
-                            child: Text('Search')),
+                        ? Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 226, 226, 226),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: InkWell(onTap: null, child: Text('Search')))
+                        : Ink(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 105, 183, 249),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: InkWell(
+                                splashColor: Colors.blue,
+                                onTap: () {
+                                  if (searchValue == -1) return;
+                                  pointer = -1;
+                                  pointer++;
+                                  setState(() {});
+                                  mytimer = Timer.periodic(
+                                      Duration(milliseconds: 750), (timer) {
+                                    linearSearch(mytimer);
+                                  });
+                                },
+                                child: Text(
+                                  'Search',
+                                )),
+                          ),
                   ],
                 ),
               ),

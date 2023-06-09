@@ -41,19 +41,22 @@ class _MyMethodsState extends State<MyMethods> {
                       SizedBox(
                         width: 20,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Linear Search",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text(
-                            "Sequentially checking each\nelement until a match is found.",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Linear Search",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              "Sequentially checking each element until a match is found.",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -93,19 +96,22 @@ class _MyMethodsState extends State<MyMethods> {
                       SizedBox(
                         width: 20,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Binary Search",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text(
-                            "Dividing and conquering a sorted\nlist to find the target element.",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Binary Search",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              "Dividing and conquering a sorted list to find the target element.",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -145,19 +151,22 @@ class _MyMethodsState extends State<MyMethods> {
                       SizedBox(
                         width: 20,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Bubble Sort",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text(
-                            "Repeatedly swapping adjacent\nelements to sort the list.",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Bubble Sort",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              "Repeatedly swapping adjacent elements to sort the list.",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -197,19 +206,22 @@ class _MyMethodsState extends State<MyMethods> {
                       SizedBox(
                         width: 20,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Selection Sort",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text(
-                            "Sort by selecting and swapping\nthe smallest element.",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Selection Sort",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              "Sort by selecting and swapping the smallest element.",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -249,19 +261,22 @@ class _MyMethodsState extends State<MyMethods> {
                       SizedBox(
                         width: 20,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Insertion Sort",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text(
-                            "Sorting by iteratively inserting\nelements in their correct place.",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Insertion Sort",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              "Sorting by iteratively inserting elements in their correct place.",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

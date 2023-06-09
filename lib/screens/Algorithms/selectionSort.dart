@@ -159,19 +159,32 @@ class _SelectionSortState extends State<SelectionSort> {
                 height: 30,
               ),
               mytimer.isActive || textBelow == "Array Sorted"
-                  ? ElevatedButton(onPressed: null, child: Text('Sort'))
-                  : ElevatedButton(
-                      onPressed: () {
-                        pointer1 = 0;
-                        pointer2 = 1;
-                        min = 0;
-                        setState(() {});
-                        mytimer = Timer.periodic(Duration(milliseconds: 750),
-                            (timer) {
-                          bubbleSortFun(mytimer);
-                        });
-                      },
-                      child: Text('Sort')),
+                  ? Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 226, 226, 226),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: InkWell(onTap: null, child: Text('Sort')))
+                  : Ink(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 105, 183, 249),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: InkWell(
+                          splashColor: Colors.blue,
+                          onTap: () {
+                            pointer1 = 0;
+                            pointer2 = 1;
+                            min = 0;
+                            setState(() {});
+                            mytimer = Timer.periodic(
+                                Duration(milliseconds: 750), (timer) {
+                              bubbleSortFun(mytimer);
+                            });
+                          },
+                          child: Text('Sort'))),
               Container(
                   margin: EdgeInsets.only(top: 50),
                   width: double.infinity,
