@@ -63,7 +63,7 @@ class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
             child: Container(
               decoration: BoxDecoration(),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 200,
+              height: MediaQuery.of(context).size.height - 100,
               child: Column(
                 children: [
                   MyMethods(enablerFunction),

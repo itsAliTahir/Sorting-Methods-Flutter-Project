@@ -198,14 +198,21 @@ class _SelectionSortState extends State<SelectionSort> {
                   ],
                 ))
             : FloatingActionButton.extended(
+                backgroundColor: Color.fromARGB(255, 105, 183, 249),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 label: Row(
                   children: [
-                    Icon(Icons.arrow_back_ios_sharp),
+                    Icon(
+                      Icons.arrow_back_ios_sharp,
+                      color: Colors.black,
+                    ),
                     SizedBox(width: 2),
-                    Text('Back')
+                    Text(
+                      'Back',
+                      style: TextStyle(color: Colors.black),
+                    )
                   ],
                 )),
       ),

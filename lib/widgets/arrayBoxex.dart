@@ -31,13 +31,17 @@ class _MyArrayBoxState extends State<MyArrayBox> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 7,
+                ),
                 Text("Generated Array"),
                 Container(
+                  margin: EdgeInsets.only(top: 2),
                   padding: EdgeInsets.all(10),
                   child: Card(
-                    elevation: 15,
+                    elevation: 5,
                     borderOnForeground: true,
-                    color: Color.fromARGB(157, 255, 255, 255),
+                    color: Colors.white,
                     child: Wrap(
                       alignment: WrapAlignment.center,
                       children: [
@@ -108,33 +112,68 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                 // color: Colors.amber,
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Wrap(
-                  spacing: 15,
-                  runSpacing: 10,
+                  spacing: 10,
+                  runSpacing: 5,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        widget.randomValues(1);
-                      },
-                      child: Text("Reset"),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blueGrey)),
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          widget.randomValues(0);
+                    Container(
+                      width: 80,
+                      height: 30,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Colors.blueGrey,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: InkWell(
+                        onTap: () {
+                          widget.randomValues(1);
                         },
-                        child: Text("Random Array")),
+                        child: Center(
+                          child: Text(
+                            "Reset",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       width: 130,
-                      child: ElevatedButton(
-                        onPressed: () {
+                      height: 30,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 105, 183, 249),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: InkWell(
+                        onTap: () {
+                          widget.randomValues(0);
+                        },
+                        child: Center(
+                          child: Text(
+                            "Random Array",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 130,
+                      height: 30,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 105, 183, 249),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: InkWell(
+                        onTap: () {
                           widget.tempArrayFun(1);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Algorithms"),
+                            Text(
+                              "Algorithms",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             Icon(Icons.navigate_next)
                           ],
                         ),

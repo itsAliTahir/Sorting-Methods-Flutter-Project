@@ -50,7 +50,7 @@ class _MyMethodsState extends State<MyMethods> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Text(
-                            "Step-by-step element matching.",
+                            "Sequentially checking each\nelement until a match is found.",
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -102,7 +102,7 @@ class _MyMethodsState extends State<MyMethods> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Text(
-                            "Dividing the list to find the target.",
+                            "Dividing and conquering a sorted\nlist to find the target element.",
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -154,7 +154,7 @@ class _MyMethodsState extends State<MyMethods> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Text(
-                            "Swapping adjacent elements",
+                            "Repeatedly swapping adjacent\nelements to sort the list.",
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -206,7 +206,7 @@ class _MyMethodsState extends State<MyMethods> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Text(
-                            "Selecting and swapping elements.",
+                            "Sort by selecting and swapping\nthe smallest element.",
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -258,7 +258,7 @@ class _MyMethodsState extends State<MyMethods> {
                                 fontWeight: FontWeight.bold,
                               )),
                           Text(
-                            "Inserting elements for sorting.",
+                            "Sorting by iteratively inserting\nelements in their correct place.",
                             style: TextStyle(fontSize: 12),
                           ),
                         ],

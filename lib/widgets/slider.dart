@@ -20,6 +20,7 @@ class _MySliderState extends State<MySlider> {
             children: [
               Text("Select Array Size"),
               SfSlider(
+                  activeColor: Color.fromARGB(255, 105, 183, 249),
                   showLabels: true,
                   interval: 2,
                   min: 4,

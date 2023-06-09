@@ -88,19 +88,16 @@ class _MyMenuState extends State<MyMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.fromARGB(255, 185, 223, 255),
-              Color.fromARGB(255, 255, 212, 239),
-            ],
-            stops: [0.0, 1.0],
-          ),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          "Generate Array",
+          style: TextStyle(color: Color.fromARGB(255, 47, 47, 47)),
         ),
+      ),
+      body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
