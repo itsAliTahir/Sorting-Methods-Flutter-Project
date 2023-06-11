@@ -5,7 +5,8 @@ import 'package:daaproject/screens/Algorithms/bubbleSort.dart';
 import 'package:daaproject/screens/Algorithms/selectionSort.dart';
 import 'package:daaproject/screens/Algorithms/insertionSort.dart';
 import 'package:flutter/material.dart';
-import 'screens/home.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'screens/splash.dart';
 import 'screens/menu.dart';
 import 'package:flutter/services.dart';
 
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      home: MySplash(),
       routes: {
-        '/': (context) => MyHome(),
+        // '/': (context) => MySplash(),
         '/menu': (context) => MyMenu(),
         '/algorithmsscreen': (context) => MyAlgorithmsScreen(),
         '/linearsearch': (context) => LinearSearch(),

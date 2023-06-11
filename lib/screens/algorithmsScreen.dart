@@ -58,12 +58,11 @@ class _MyAlgorithmsScreenState extends State<MyAlgorithmsScreen> {
             style: TextStyle(color: Color.fromARGB(255, 47, 47, 47)),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Container(
-              decoration: BoxDecoration(),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 100,
+        body: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height - 100,
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   MyMethods(enablerFunction),

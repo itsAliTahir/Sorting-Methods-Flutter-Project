@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/array.dart';
 
 class MyArrayBox extends StatefulWidget {
@@ -72,7 +73,18 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                                         )
                                       : TextFormField(
                                           style: TextStyle(fontSize: 15.0),
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter
+                                                .digitsOnly,
+                                            LengthLimitingTextInputFormatter(2)
+                                          ],
+                                          keyboardType: TextInputType.number,
                                           onChanged: (value) {
+                                            if (value.isEmpty) {
+                                              widget.updateValue(
+                                                  index.toInt(), 0);
+                                              return;
+                                            }
                                             widget.updateValue(index.toInt(),
                                                 int.parse(value));
                                           },
@@ -115,19 +127,19 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                   spacing: 10,
                   runSpacing: 5,
                   children: [
-                    Ink(
-                      width: 80,
-                      height: 45,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                      decoration: BoxDecoration(
-                          color: Colors.blueGrey,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: InkWell(
-                        splashColor: Color.fromARGB(255, 121, 121, 121),
-                        onTap: () {
-                          widget.randomValues(1);
-                        },
+                    InkWell(
+                      splashColor: Color.fromARGB(255, 72, 93, 103),
+                      onTap: () {
+                        widget.randomValues(1);
+                      },
+                      child: Ink(
+                        width: 80,
+                        height: 45,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        decoration: BoxDecoration(
+                            color: Colors.blueGrey,
+                            borderRadius: BorderRadius.circular(5)),
                         child: Center(
                           child: Text(
                             "Reset",
@@ -136,20 +148,20 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                         ),
                       ),
                     ),
-                    Ink(
-                      width: 130,
-                      height: 45,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 105, 183, 249),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: InkWell(
-                        splashColor: Colors.blue,
-                        splashFactory: InkRipple.splashFactory,
-                        onTap: () {
-                          widget.randomValues(0);
-                        },
+                    InkWell(
+                      splashColor: Colors.blue,
+                      splashFactory: InkRipple.splashFactory,
+                      onTap: () {
+                        widget.randomValues(0);
+                      },
+                      child: Ink(
+                        width: 130,
+                        height: 45,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 105, 183, 249),
+                            borderRadius: BorderRadius.circular(5)),
                         child: Center(
                           child: Text(
                             "Random Array",
@@ -158,19 +170,19 @@ class _MyArrayBoxState extends State<MyArrayBox> {
                         ),
                       ),
                     ),
-                    Ink(
-                      width: 130,
-                      height: 45,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 105, 183, 249),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: InkWell(
-                        splashColor: Colors.blue,
-                        onTap: () {
-                          widget.tempArrayFun(1);
-                        },
+                    InkWell(
+                      splashColor: Colors.blue,
+                      onTap: () {
+                        widget.tempArrayFun(1);
+                      },
+                      child: Ink(
+                        width: 130,
+                        height: 45,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 105, 183, 249),
+                            borderRadius: BorderRadius.circular(5)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
