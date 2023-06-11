@@ -13,7 +13,7 @@ class _MySplashState extends State<MySplash> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2, milliseconds: 200)).then((value) {
+    Future.delayed(Duration(seconds: 2, milliseconds: 400)).then((value) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (ctx) => MyMenu()));
     });
@@ -36,13 +36,19 @@ class _MySplashState extends State<MySplash> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Algorithms\n Visualizer",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Center(
+                  child: Text(
+                    "Algorithms\n Visualizer",
+                    style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'VintageWaves',
+                        height: 0.8),
+                  ),
                 ),
                 Image.asset(
                   'assets/loading.gif',
-                  scale: 5,
+                  scale: 6,
                 ),
               ],
             ),
