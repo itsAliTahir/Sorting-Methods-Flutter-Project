@@ -144,7 +144,7 @@ class _LinearSearchState extends State<LinearSearch> {
                     ),
                     mytimer.isActive
                         ? InkWell(
-                            splashColor: Colors.redAccent,
+                            splashColor: Colors.blue,
                             onTap: () {
                               if (searchValue == -1) return;
 
@@ -157,7 +157,7 @@ class _LinearSearchState extends State<LinearSearch> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 15),
                               decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 249, 105, 105),
+                                  color: Color.fromARGB(255, 105, 183, 249),
                                   borderRadius: BorderRadius.circular(10)),
                               child: Text(
                                 'Cancel',

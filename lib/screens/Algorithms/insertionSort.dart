@@ -189,7 +189,7 @@ class _InsertionSortState extends State<InsertionSort> {
               ),
               mytimer.isActive || textBelow == "Array Sorted"
                   ? InkWell(
-                      splashColor: Colors.redAccent,
+                      splashColor: Colors.blue,
                       onTap: () {
                         mytimer.cancel();
                         textBelow = "Cancelled";
@@ -209,7 +209,7 @@ class _InsertionSortState extends State<InsertionSort> {
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 249, 105, 105),
+                            color: Color.fromARGB(255, 105, 183, 249),
                             borderRadius: BorderRadius.circular(10)),
                         child: Text(
                           'Cancel',
