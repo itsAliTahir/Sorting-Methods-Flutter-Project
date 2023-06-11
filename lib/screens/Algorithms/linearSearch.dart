@@ -143,13 +143,33 @@ class _LinearSearchState extends State<LinearSearch> {
                       ),
                     ),
                     mytimer.isActive
-                        ? Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 15),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 226, 226, 226),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: InkWell(onTap: null, child: Text('Search')))
+                        ? InkWell(
+                            splashColor: Colors.redAccent,
+                            onTap: () {
+                              if (searchValue == -1) return;
+
+                              pointer = -1;
+                              textBelow = "Cancelled";
+                              mytimer.cancel();
+                              setState(() {});
+                            },
+                            child: Ink(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 15),
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 249, 105, 105),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Text(
+                                'Cancel',
+                              ),
+                            ))
+                        //  Container(
+                        //     padding: EdgeInsets.symmetric(
+                        //         vertical: 10, horizontal: 15),
+                        //     decoration: BoxDecoration(
+                        //         color: Color.fromARGB(255, 226, 226, 226),
+                        //         borderRadius: BorderRadius.circular(10)),
+                        //     child: InkWell(onTap: null, child: Text('Search')))
                         : InkWell(
                             splashColor: Colors.blue,
                             onTap: () {

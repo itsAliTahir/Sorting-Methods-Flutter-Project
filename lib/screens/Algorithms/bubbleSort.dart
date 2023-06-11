@@ -155,13 +155,31 @@ class _BubbleSortState extends State<BubbleSort> {
                 height: 20,
               ),
               mytimer.isActive || textBelow == "Array Sorted"
-                  ? Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 226, 226, 226),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: InkWell(onTap: null, child: Text('Sort')))
+                  ? InkWell(
+                      splashColor: Colors.redAccent,
+                      onTap: () {
+                        mytimer.cancel();
+                        textBelow = "Cancelled";
+                        myArray1 = [];
+                        for (int i = 0; i < mainSlider; i++) {
+                          Ray newRay = Ray(myArray[i].value);
+                          myArray1.add(newRay);
+                        }
+                        pointer1 = -1;
+                        pointer2 = -1;
+                        end = myArray1.length;
+                        setState(() {});
+                      },
+                      child: Ink(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 249, 105, 105),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          'Cancel',
+                        ),
+                      ))
                   : Ink(
                       child: InkWell(
                           splashColor: Colors.blue,

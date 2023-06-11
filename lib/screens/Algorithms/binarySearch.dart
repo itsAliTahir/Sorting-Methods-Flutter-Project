@@ -167,13 +167,27 @@ class _BinarySearchState extends State<BinarySearch> {
                       ),
                     ),
                     mytimer.isActive
-                        ? Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 15),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 226, 226, 226),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: InkWell(onTap: null, child: Text('Search')))
+                        ? InkWell(
+                            splashColor: Colors.redAccent,
+                            onTap: () {
+                              if (searchValue == -1) return;
+                              mytimer.cancel();
+                              pointer = -1;
+                              start = -1;
+                              end = myArray1.length;
+                              textBelow = "Cancelled";
+                              setState(() {});
+                            },
+                            child: Ink(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 15),
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 249, 105, 105),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Text(
+                                'Cancel',
+                              ),
+                            ))
                         : InkWell(
                             splashColor: Colors.blue,
                             onTap: () {
