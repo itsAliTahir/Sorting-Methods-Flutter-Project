@@ -15,6 +15,7 @@ class _BinarySearchState extends State<BinarySearch> {
   int start = -1;
   int end = myArray.length;
   double mid = 0;
+  bool done = false;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
   void initState() {
@@ -38,6 +39,7 @@ class _BinarySearchState extends State<BinarySearch> {
         end = -1;
         pointer = -1;
         textBelow = "Couldn't Found Number in This Array";
+        done = true;
         mytimerr.cancel();
         setState(() {});
         return;
@@ -57,11 +59,13 @@ class _BinarySearchState extends State<BinarySearch> {
           // start = pointer;
           // end = pointer;
           textBelow = "Number Found At Index: $pointer";
+          done = true;
           mytimerr.cancel();
           setState(() {});
           return;
         } else {
           textBelow = "Couldn't Found Number in This Array";
+          done = true;
           mytimerr.cancel();
           return;
         }
@@ -166,7 +170,7 @@ class _BinarySearchState extends State<BinarySearch> {
                         ),
                       ),
                     ),
-                    mytimer.isActive
+                    done == true
                         ? InkWell(
                             splashColor: Colors.blue,
                             onTap: () {
@@ -175,7 +179,8 @@ class _BinarySearchState extends State<BinarySearch> {
                               pointer = -1;
                               start = -1;
                               end = myArray1.length;
-                              textBelow = "Cancelled";
+                              done = false;
+                              textBelow = " ";
                               setState(() {});
                             },
                             child: Ink(
@@ -185,29 +190,54 @@ class _BinarySearchState extends State<BinarySearch> {
                                   color: Color.fromARGB(255, 105, 183, 249),
                                   borderRadius: BorderRadius.circular(10)),
                               child: Text(
-                                'Cancel',
+                                'Reset',
                               ),
                             ))
-                        : InkWell(
-                            splashColor: Colors.blue,
-                            onTap: () {
-                              if (searchValue == -1) return;
-                              pointer = -1;
-                              start = -1;
-                              end = myArray1.length;
-                              setState(() {});
-                              mytimer =
-                                  Timer.periodic(Duration(seconds: 1), (timer) {
-                                binarySearch(mytimer);
-                              });
-                            },
-                            child: Ink(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 105, 183, 249),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Text('Search')))
+                        : mytimer.isActive
+                            ? InkWell(
+                                splashColor: Colors.blue,
+                                onTap: () {
+                                  if (searchValue == -1) return;
+                                  mytimer.cancel();
+                                  pointer = -1;
+                                  start = -1;
+                                  end = myArray1.length;
+                                  textBelow = "Cancelled";
+                                  setState(() {});
+                                },
+                                child: Ink(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 105, 183, 249),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(
+                                    'Cancel',
+                                  ),
+                                ))
+                            : InkWell(
+                                splashColor: Colors.blue,
+                                onTap: () {
+                                  if (searchValue == -1) return;
+                                  done = false;
+                                  pointer = -1;
+                                  start = -1;
+                                  end = myArray1.length;
+                                  setState(() {});
+                                  mytimer = Timer.periodic(Duration(seconds: 1),
+                                      (timer) {
+                                    binarySearch(mytimer);
+                                  });
+                                },
+                                child: Ink(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 15),
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(255, 105, 183, 249),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Text('Search')))
                   ],
                 ),
               ),

@@ -17,6 +17,7 @@ class InsertionSort extends StatefulWidget {
 }
 
 class _InsertionSortState extends State<InsertionSort> {
+  int backtimes = 0;
   int pointer1 = -1;
   int pointer2 = -1;
   int temp = 0;
@@ -51,6 +52,7 @@ class _InsertionSortState extends State<InsertionSort> {
           myArray1[pointer1].value = myArray1[pointer2].value;
           myArray1[pointer2].value = temp;
           textBelow = "Values Swaped";
+          backtimes = 0;
         }
         pointer1 = till;
         pointer2 = till + 1;
@@ -64,6 +66,7 @@ class _InsertionSortState extends State<InsertionSort> {
           myArray1[pointer2].value = temp;
           sorted = true;
           textBelow = "Values Swaped";
+          backtimes = 0;
           back = true;
           till = pointer1;
           print('flag 1');
@@ -73,17 +76,30 @@ class _InsertionSortState extends State<InsertionSort> {
             temp = myArray1[pointer1].value;
             myArray1[pointer1].value = myArray1[pointer2].value;
             myArray1[pointer2].value = temp;
+            backtimes = 0;
             sorted = true;
             textBelow = "Values Swaped";
             print('flag 2');
+            print(backtimes);
             setState(() {});
           } else {
-            pointer1--;
-            pointer2--;
-            sorted = true;
-            textBelow = "Back Progressing...";
-            print('flag 3');
-            setState(() {});
+            if (backtimes < 2) {
+              pointer1--;
+              pointer2--;
+              backtimes++;
+              sorted = true;
+              textBelow = "Back Progressing...";
+              print('flag 3');
+              print(backtimes);
+              setState(() {});
+            } else {
+              backtimes = 0;
+              back = false;
+              pointer1 = till;
+              pointer2 = till + 1;
+              textBelow = "Progressing...";
+              setState(() {});
+            }
           }
         } else {
           pointer1++;
@@ -187,12 +203,12 @@ class _InsertionSortState extends State<InsertionSort> {
               SizedBox(
                 height: 30,
               ),
-              mytimer.isActive || textBelow == "Array Sorted"
+              textBelow == "Array Sorted"
                   ? InkWell(
                       splashColor: Colors.blue,
                       onTap: () {
                         mytimer.cancel();
-                        textBelow = "Cancelled";
+                        textBelow = " ";
                         myArray1 = [];
                         for (int i = 0; i < mainSlider; i++) {
                           Ray newRay = Ray(myArray[i].value);
@@ -212,30 +228,59 @@ class _InsertionSortState extends State<InsertionSort> {
                             color: Color.fromARGB(255, 105, 183, 249),
                             borderRadius: BorderRadius.circular(10)),
                         child: Text(
-                          'Cancel',
+                          'Reset',
                         ),
                       ))
-                  : Ink(
-                      child: InkWell(
+                  : mytimer.isActive
+                      ? InkWell(
                           splashColor: Colors.blue,
                           onTap: () {
-                            pointer1 = 0;
-                            pointer2 = 1;
-                            till = 0;
-                            back = false;
+                            mytimer.cancel();
+                            textBelow = "Cancelled";
+                            myArray1 = [];
+                            for (int i = 0; i < mainSlider; i++) {
+                              Ray newRay = Ray(myArray[i].value);
+                              myArray1.add(newRay);
+                            }
+                            pointer1 = -1;
+                            pointer2 = -1;
+                            till = -1;
+                            bool sorted = true;
+                            bool back = false;
                             setState(() {});
-                            mytimer = Timer.periodic(
-                                Duration(milliseconds: 750), (timer) {
-                              insertionSortFun(mytimer);
-                            });
                           },
                           child: Ink(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 15),
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 105, 183, 249),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Text('Sort')))),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 105, 183, 249),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                              'Cancel',
+                            ),
+                          ))
+                      : Ink(
+                          child: InkWell(
+                              splashColor: Colors.blue,
+                              onTap: () {
+                                backtimes = 0;
+                                pointer1 = 0;
+                                pointer2 = 1;
+                                till = 0;
+                                back = false;
+                                setState(() {});
+                                mytimer = Timer.periodic(
+                                    Duration(milliseconds: 750), (timer) {
+                                  insertionSortFun(mytimer);
+                                });
+                              },
+                              child: Ink(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 105, 183, 249),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text('Sort')))),
               Container(
                   margin: EdgeInsets.only(top: 50),
                   width: double.infinity,

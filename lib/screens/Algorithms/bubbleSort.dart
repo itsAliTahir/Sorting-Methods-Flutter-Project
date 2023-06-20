@@ -154,12 +154,12 @@ class _BubbleSortState extends State<BubbleSort> {
               SizedBox(
                 height: 20,
               ),
-              mytimer.isActive || textBelow == "Array Sorted"
+              textBelow == "Array Sorted"
                   ? InkWell(
                       splashColor: Colors.blue,
                       onTap: () {
                         mytimer.cancel();
-                        textBelow = "Cancelled";
+                        textBelow = " ";
                         myArray1 = [];
                         for (int i = 0; i < mainSlider; i++) {
                           Ray newRay = Ray(myArray[i].value);
@@ -177,28 +177,54 @@ class _BubbleSortState extends State<BubbleSort> {
                             color: Color.fromARGB(255, 105, 183, 249),
                             borderRadius: BorderRadius.circular(10)),
                         child: Text(
-                          'Cancel',
+                          'Reset',
                         ),
                       ))
-                  : Ink(
-                      child: InkWell(
+                  : mytimer.isActive
+                      ? InkWell(
                           splashColor: Colors.blue,
                           onTap: () {
-                            pointer1 = 0;
-                            pointer2 = 1;
+                            mytimer.cancel();
+                            textBelow = "Cancelled";
+                            myArray1 = [];
+                            for (int i = 0; i < mainSlider; i++) {
+                              Ray newRay = Ray(myArray[i].value);
+                              myArray1.add(newRay);
+                            }
+                            pointer1 = -1;
+                            pointer2 = -1;
+                            end = myArray1.length;
                             setState(() {});
-                            mytimer = Timer.periodic(
-                                Duration(milliseconds: 750), (timer) {
-                              bubbleSortFun(mytimer);
-                            });
                           },
                           child: Ink(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 15),
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 105, 183, 249),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Text('Sort')))),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 105, 183, 249),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                              'Cancel',
+                            ),
+                          ))
+                      : Ink(
+                          child: InkWell(
+                              splashColor: Colors.blue,
+                              onTap: () {
+                                pointer1 = 0;
+                                pointer2 = 1;
+                                setState(() {});
+                                mytimer = Timer.periodic(
+                                    Duration(milliseconds: 750), (timer) {
+                                  bubbleSortFun(mytimer);
+                                });
+                              },
+                              child: Ink(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 105, 183, 249),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text('Sort')))),
               Container(
                   margin: EdgeInsets.only(top: 50),
                   width: double.infinity,

@@ -11,6 +11,7 @@ class LinearSearch extends StatefulWidget {
 class _LinearSearchState extends State<LinearSearch> {
   int searchValue = -1;
   int pointer = -1;
+  bool done = false;
   String textBelow = " ";
   Timer mytimer = Timer.periodic(Duration.zero, (timer) {});
   void initState() {
@@ -26,11 +27,13 @@ class _LinearSearchState extends State<LinearSearch> {
           pointer < myArray.length &&
           searchValue == myArray[pointer]) {
         textBelow = "Number Found At Index: $pointer";
+        done = true;
         mytimerr.cancel();
         setState(() {});
         return;
       } else if (pointer >= myArray.length) {
         textBelow = "Couldn't Found Number in This Array";
+        done = true;
         mytimerr.cancel();
         setState(() {});
         return;
@@ -142,14 +145,14 @@ class _LinearSearchState extends State<LinearSearch> {
                         ),
                       ),
                     ),
-                    mytimer.isActive
+                    done == true
                         ? InkWell(
                             splashColor: Colors.blue,
                             onTap: () {
                               if (searchValue == -1) return;
-
+                              done = false;
                               pointer = -1;
-                              textBelow = "Cancelled";
+                              textBelow = " ";
                               mytimer.cancel();
                               setState(() {});
                             },
@@ -160,38 +163,53 @@ class _LinearSearchState extends State<LinearSearch> {
                                   color: Color.fromARGB(255, 105, 183, 249),
                                   borderRadius: BorderRadius.circular(10)),
                               child: Text(
-                                'Cancel',
+                                'Reset',
                               ),
                             ))
-                        //  Container(
-                        //     padding: EdgeInsets.symmetric(
-                        //         vertical: 10, horizontal: 15),
-                        //     decoration: BoxDecoration(
-                        //         color: Color.fromARGB(255, 226, 226, 226),
-                        //         borderRadius: BorderRadius.circular(10)),
-                        //     child: InkWell(onTap: null, child: Text('Search')))
-                        : InkWell(
-                            splashColor: Colors.blue,
-                            onTap: () {
-                              if (searchValue == -1) return;
-                              pointer = -1;
-                              pointer++;
-                              setState(() {});
-                              mytimer = Timer.periodic(
-                                  Duration(milliseconds: 750), (timer) {
-                                linearSearch(mytimer);
-                              });
-                            },
-                            child: Ink(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 15),
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 105, 183, 249),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Text(
-                                'Search',
-                              ),
-                            )),
+                        : mytimer.isActive
+                            ? InkWell(
+                                splashColor: Colors.blue,
+                                onTap: () {
+                                  if (searchValue == -1) return;
+
+                                  pointer = -1;
+                                  textBelow = "Cancelled";
+                                  mytimer.cancel();
+                                  setState(() {});
+                                },
+                                child: Ink(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 105, 183, 249),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(
+                                    'Cancel',
+                                  ),
+                                ))
+                            : InkWell(
+                                splashColor: Colors.blue,
+                                onTap: () {
+                                  if (searchValue == -1) return;
+                                  pointer = -1;
+                                  done = false;
+                                  pointer++;
+                                  setState(() {});
+                                  mytimer = Timer.periodic(
+                                      Duration(milliseconds: 750), (timer) {
+                                    linearSearch(mytimer);
+                                  });
+                                },
+                                child: Ink(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(255, 105, 183, 249),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(
+                                    'Search',
+                                  ),
+                                )),
                   ],
                 ),
               ),
