@@ -23,182 +23,178 @@ class _MyArrayBoxState extends State<MyArrayBox> {
     print('${widget.displayError}');
     // print(MediaQuery.of(context).size.width);
     // print(widget.sliderValue);
-    return SingleChildScrollView(
-      child: Container(
-        height: MediaQuery.of(context).size.height - 220,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 7,
-                ),
-                Text("Generated Array"),
-                Container(
-                  margin: EdgeInsets.only(top: 2),
-                  padding: EdgeInsets.all(10),
-                  child: Card(
-                    elevation: 5,
-                    borderOnForeground: true,
-                    color: Colors.white,
-                    child: Wrap(
-                      alignment: WrapAlignment.center,
-                      children: [
-                        for (int index = 0; index < widget.sliderValue; index++)
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectBox = index;
-                              });
-                            },
-                            child: Container(
-                              width: 55,
-                              height: 55,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                // color: Color.fromARGB(255, 182, 208, 255),
+    return Container(
+      height: MediaQuery.of(context).size.height - 220,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 7,
+              ),
+              Text("Generated Array"),
+              Container(
+                margin: EdgeInsets.only(top: 2),
+                padding: EdgeInsets.all(10),
+                child: Card(
+                  elevation: 5,
+                  borderOnForeground: true,
+                  color: Colors.white,
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    children: [
+                      for (int index = 0; index < widget.sliderValue; index++)
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectBox = index;
+                            });
+                          },
+                          child: Container(
+                            width: 55,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Colors.transparent,
+                                width: 1,
                               ),
-                              margin: EdgeInsets.all(2),
-                              child: Center(
-                                  child: selectBox != index
-                                      ? Text(
-                                          "${myArray[index].value}",
-                                          style: TextStyle(fontSize: 15),
-                                        )
-                                      : TextFormField(
-                                          style: TextStyle(fontSize: 15.0),
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .digitsOnly,
-                                            LengthLimitingTextInputFormatter(2)
-                                          ],
-                                          keyboardType: TextInputType.number,
-                                          onChanged: (value) {
-                                            if (value.isEmpty) {
-                                              widget.updateValue(
-                                                  index.toInt(), 0);
-                                              return;
-                                            }
-                                            widget.updateValue(index.toInt(),
-                                                int.parse(value));
-                                          },
-                                          onTapOutside: (event) {
-                                            selectBox = -2;
-                                            setState(() {});
-                                          },
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    vertical: 12.0),
-                                            hintText: ' ',
-                                          ),
-                                        )),
+                              // color: Color.fromARGB(255, 182, 208, 255),
                             ),
+                            margin: EdgeInsets.all(2),
+                            child: Center(
+                                child: selectBox != index
+                                    ? Text(
+                                        "${myArray[index].value}",
+                                        style: TextStyle(fontSize: 15),
+                                      )
+                                    : TextFormField(
+                                        style: TextStyle(fontSize: 15.0),
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter
+                                              .digitsOnly,
+                                          LengthLimitingTextInputFormatter(2)
+                                        ],
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value) {
+                                          if (value.isEmpty) {
+                                            widget.updateValue(
+                                                index.toInt(), 0);
+                                            return;
+                                          }
+                                          widget.updateValue(
+                                              index.toInt(), int.parse(value));
+                                        },
+                                        onTapOutside: (event) {
+                                          selectBox = -2;
+                                          setState(() {});
+                                        },
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 12.0),
+                                          hintText: ' ',
+                                        ),
+                                      )),
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 ),
-                widget.displayError == true && widget.screen > 0
-                    ? Text(
-                        'Please Input Values Into Your Array',
-                        style: TextStyle(
-                            color: Colors.redAccent,
-                            fontWeight: FontWeight.bold),
-                      )
-                    : Text(
-                        ' ',
+              ),
+              widget.displayError == true && widget.screen > 0
+                  ? Text(
+                      'Please Input Values Into Your Array',
+                      style: TextStyle(
+                          color: Colors.redAccent, fontWeight: FontWeight.bold),
+                    )
+                  : Text(
+                      ' ',
+                    ),
+            ],
+          ),
+          // SizedBox(
+          //   height: 190,
+          // ),
+          Container(
+              // color: Colors.amber,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 5,
+                children: [
+                  InkWell(
+                    splashColor: Color.fromARGB(255, 72, 93, 103),
+                    onTap: () {
+                      widget.randomValues(1);
+                    },
+                    child: Ink(
+                      width: 80,
+                      height: 45,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Colors.blueGrey,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          "Reset",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
-              ],
-            ),
-            // SizedBox(
-            //   height: 190,
-            // ),
-            Container(
-                // color: Colors.amber,
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 5,
-                  children: [
-                    InkWell(
-                      splashColor: Color.fromARGB(255, 72, 93, 103),
-                      onTap: () {
-                        widget.randomValues(1);
-                      },
-                      child: Ink(
-                        width: 80,
-                        height: 45,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                        decoration: BoxDecoration(
-                            color: Colors.blueGrey,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Center(
-                          child: Text(
-                            "Reset",
+                    ),
+                  ),
+                  InkWell(
+                    splashColor: Colors.blue,
+                    splashFactory: InkRipple.splashFactory,
+                    onTap: () {
+                      widget.randomValues(0);
+                    },
+                    child: Ink(
+                      width: 130,
+                      height: 45,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 105, 183, 249),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Center(
+                        child: Text(
+                          "Random Array",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    splashColor: Colors.blue,
+                    onTap: () {
+                      widget.tempArrayFun(1);
+                    },
+                    child: Ink(
+                      width: 130,
+                      height: 45,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 105, 183, 249),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Algorithms",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
+                          Icon(Icons.navigate_next)
+                        ],
                       ),
                     ),
-                    InkWell(
-                      splashColor: Colors.blue,
-                      splashFactory: InkRipple.splashFactory,
-                      onTap: () {
-                        widget.randomValues(0);
-                      },
-                      child: Ink(
-                        width: 130,
-                        height: 45,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 105, 183, 249),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Center(
-                          child: Text(
-                            "Random Array",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      splashColor: Colors.blue,
-                      onTap: () {
-                        widget.tempArrayFun(1);
-                      },
-                      child: Ink(
-                        width: 130,
-                        height: 45,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 105, 183, 249),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Algorithms",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Icon(Icons.navigate_next)
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ))
-          ],
-        ),
+                  ),
+                ],
+              ))
+        ],
       ),
     );
   }

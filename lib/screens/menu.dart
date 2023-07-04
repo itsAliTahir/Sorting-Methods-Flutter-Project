@@ -97,21 +97,21 @@ class _MyMenuState extends State<MyMenu> {
           style: TextStyle(color: Color.fromARGB(255, 47, 47, 47)),
         ),
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              MySlider(sliderValue, setSliderValue),
-              MyArrayBox(sliderValue.toInt(), UpdateArrayValue, randomValues,
-                  tempArrayFun, emptyArray, screen),
-              SizedBox(
-                height: 10,
-              ),
-            ],
+      body: ListView(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height - 60,
+            child: Column(
+              children: [
+                MySlider(sliderValue, setSliderValue),
+                MyArrayBox(sliderValue.toInt(), UpdateArrayValue, randomValues,
+                    tempArrayFun, emptyArray, screen),
+                SizedBox(height: 10),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
